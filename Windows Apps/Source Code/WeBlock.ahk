@@ -1,4 +1,4 @@
-﻿SetWorkingDir %A_ScriptDir%
+SetWorkingDir %A_ScriptDir%
 #NoTrayIcon
 #SingleInstance force
 detectHiddenWindows,on
@@ -33,7 +33,7 @@ If !foundDriver
 Gui +LastFound
 hwndParent := WinExist()
 Gui, Show, w1 h1 hide, Smile
-SelectedDriver = 0    ;change to suit
+SelectedDriver = 0
 capHwnd := Cap_CreateCaptureWindow(hwndParent, 0, 0, 1, 1)
 WM_USER = 0x0400
 WM_CAP_START := WM_USER
