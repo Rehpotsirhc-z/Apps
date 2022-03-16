@@ -1,24 +1,26 @@
-#!bin/sh
-if [ "$1" = "hide" ]
-then
-	proid=$(xdo id)
-	echo $proid >> ~/.config/.proidlog
-	xdo hide $proid
-elif [ "$1" = "show" ]
-then
-	proid=$(sed '$!d' ~/.config/.proidlog)
-	xdo show $proid
-	sed -i '$d' ~/.config/.proidlog
-elif [ "$1" = "deshide" ]
-then	
-	proid=$(xdo id)
-	echo $proid >> ~/.config/.desproidlog
-	xdo hide $proid
-elif [ "$1" = "desshow" ]
-then	
-	proid=$(sed '$!d' ~/.config/.desproidlog)
-	xdo show $proid
-	sed -i '$d' ~/.config/.desproidlog
-else
-	echo "No valid arguments"
-fi
+#!/bin/sh
+case $1 in
+    hide)
+        proid=$(xdo id)
+        echo $proid >> "$HOME/.config/.proidlog"
+        xdo hide $proid
+        ;;
+    show)
+        proid=$(sed '$!d' "$HOME/.config/.proidlog")
+    	xdo show $proid
+    	sed -i '$d' "$HOME/.config/.proidlog"
+        ;;
+    deshide)
+        proid=$(xdo id)
+        echo $proid >> "$HOME/.config/.desproidlog"
+        xdo hide $proid
+        ;;
+    desshow)
+        proid=$(sed '$!d' "$HOME/.config/.desproidlog")
+    	xdo show $proid
+    	sed -i '$d' "$HOME/.config/.desproidlog"
+        ;;
+    *)
+        echo "No valid arguments"
+        ;;
+esac
