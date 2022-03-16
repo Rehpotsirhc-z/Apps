@@ -1,6 +1,6 @@
 #!/bin/sh
 case $1 in
-    1
+    1)
         nitrogen --restore
         ;; 
     2)
