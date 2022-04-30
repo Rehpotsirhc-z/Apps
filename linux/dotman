@@ -16,8 +16,12 @@ case $1 in
         find $scriptpath -mindepth 1 -type f -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
         sudo rsync -tarv --files-from=/tmp/dotman /root $scriptpath
     ;; 
-    slashpush)
+    slashpull)
         sudo rsync -tarv $scriptpath/slash $scriptpath /
+    ;;
+    slashpush)
+        find $scriptpath/slash -mindepth 1 -type f -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
+        sudo rsync -tarv --files-from=/tmp/dotman / $scriptpath/slash
     ;;
     *)
         echo 'Invalid argument'
