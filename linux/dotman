@@ -1,5 +1,5 @@
 #!/bin/sh
-scriptpath=$HOME/dotfiles
+scriptpath=$HOME/dotfiles/
 
 case $1 in
     pull)
