@@ -9,11 +9,11 @@ case $1 in
         sudo rsync -tarv $scriptpath /root
     ;;
     push)
-        find $scriptpath -mindepth 1 -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
+        find $scriptpath -mindepth 1 -type f -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
         rsync -tarv --files-from=/tmp/dotman $HOME $scriptpath
     ;;
     rootpush)
-        find $scriptpath -mindepth 1 -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
+        find $scriptpath -mindepth 1 -type f -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
         sudo rsync -tarv --files-from=/tmp/dotman /root $scriptpath
     ;; 
     slashpush)
