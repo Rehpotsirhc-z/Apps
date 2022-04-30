@@ -1,0 +1,26 @@
+#!/bin/sh
+scriptpath=$HOME/dotfiles
+
+case $1 in
+    pull)
+        rsync -tarv $scriptpath $HOME
+    ;;
+    rootpull)
+        sudo rsync -tarv $scriptpath /root
+    ;;
+    push)
+        find $scriptpath -mindepth 1 -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
+        rsync -tarv --files-from=/tmp/dotman $HOME $scriptpath
+    ;;
+    rootpush)
+        find $scriptpath -mindepth 1 -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
+        sudo rsync -tarv --files-from=/tmp/dotman /root $scriptpath
+    ;; 
+    slashpush)
+        sudo rsync -tarv $scriptpath/slash $scriptpath /
+    *)
+        echo 'Invalid argument'
+    ;;
+esac
+
+# realpath $1
