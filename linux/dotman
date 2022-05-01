@@ -12,6 +12,34 @@ case $1 in
         find $scriptpath -mindepth 1 -type f -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
         rsync -tarv --files-from=/tmp/dotman $HOME $scriptpath
     ;;
+    add)
+        if [ -n "$2" ]
+        then
+            if [ -d "$2" ]
+            then
+                fullpath=$(readlink -f $2)
+                directory=$scriptpath$(echo $fullpath | awk 'BEGIN{FS=OFS="/"} {$1=$2=$3=""; print substr($0,4)}')
+                mkdir -p "$directory"            
+            else
+                fullpath=$(readlink -f $2)
+                for line in "$2"
+                do
+                    echo $line
+                #if [ -n "$line" ] 
+                #    then
+                #        file=$scriptpath$(echo $line | awk 'BEGIN{FS=OFS="/"} {$1=$2=$3=""; print substr($0,4)}')
+                #        directory=$(echo $file | awk 'BEGIN{FS=OFS="/"} {$(NF)=""; print}')
+                #        echo "Created $file"
+                #        #mkdir -p "$directory" && touch "$file"
+                #    else
+                #        echo "File does not exist"
+                #fi
+                done
+            fi
+        else
+            echo "No file specified"
+        fi
+    ;;
     rootpush)
         find $scriptpath -mindepth 1 -type f -printf '%P\n' | grep -Evi '^.git|^slash|^setup' > /tmp/dotman
         sudo rsync -tarv --files-from=/tmp/dotman /root $scriptpath
