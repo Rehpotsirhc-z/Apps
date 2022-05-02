@@ -3,7 +3,7 @@ scriptpath=$HOME/dotfiles/
 
 case $1 in
     pull)
-        rsync -tarv $scriptpath $HOME
+        rsync -tarv --exclude={'slash', 'setup'} $scriptpath $HOME
     ;;
     rootpull)
         sudo rsync -tarv $scriptpath /root
