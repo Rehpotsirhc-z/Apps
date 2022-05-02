@@ -1,5 +1,5 @@
 #!/bin/sh
-scriptpath=$HOME/dotfiles/
+scriptpath="$HOME/dotfiles/"
 
 case $1 in
     pull)
@@ -29,10 +29,6 @@ case $1 in
                             echo "Directory does not exist"
                     fi
                 done
-
-                fullpath=$(readlink -f $2)
-                directory=$scriptpath$(echo $fullpath | awk 'BEGIN{FS=OFS="/"} {$1=$2=$3=""; print substr($0,4)}')
-                mkdir -p "$directory"            
             else
                 for line in "${@:2}"
                 do
