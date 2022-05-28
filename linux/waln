@@ -4,31 +4,31 @@ case $1 in
 	nitrogen --restore
 	;;
 2)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Christmas.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Christmas.jpg"
 	;;
 3)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Angel Beats.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Angel Beats.jpg"
 	;;
 4)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/C3.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/C3.jpg"
 	;;
 5)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Love of Ren'ai Koutei of LOVE!.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Love of Ren'ai Koutei of LOVE!.jpg"
 	;;
 6)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Sora no Mukou de Sakimasu you ni.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Sora no Mukou de Sakimasu you ni.jpg"
 	;;
 7)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Majo Koi Nikki.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Majo Koi Nikki.jpg"
 	;;
 8)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Innocent Girl.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Innocent Girl.jpg"
 	;;
 9)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Witch's Garden.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Witch's Garden.jpg"
 	;;
 0)
-	nitrogen --set-zoom-fill "/home/rehpotsirhc/Nextcloud/Pictures/Anime/Miniskirt Pirates.jpg"
+	nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Miniskirt Pirates.jpg"
 	;;
 *)
 	echo "No valid arguments"
