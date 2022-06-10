@@ -133,7 +133,7 @@ lock() {
         --image "$image" \
         --color "$bgcolor" \
         --screen "$display_on" \
-        --ind-pos="x+310:y+h-82" \
+        --ind-pos="x+310:y+h-86" \
         --radius=25 \
         --ring-width=5 \
         --inside-color="$insidecolor" \
@@ -201,7 +201,7 @@ failsafe() {
 
     $i3lockcolor_bin \
         --color "$bgcolor" \
-        --ind-pos="x+310:y+h-82" \
+        --ind-pos="x+310:y+h-86" \
         --radius=25 \
         --ring-width=5 \
         --inside-color="$insidecolor" \
