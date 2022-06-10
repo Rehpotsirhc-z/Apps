@@ -39,6 +39,7 @@ init_config () {
     ringwrongcolor=ffffffff
     insidewrongcolor=d23c3dff
     timecolor=ffffffff
+    time_format="%H:%M:%S"
     greetercolor=ffffffff
     layoutcolor=ffffffff
     keyhlcolor=d23c3dff
@@ -48,7 +49,7 @@ init_config () {
     modifcolor=d23c3dff
     bgcolor=000000ff
     wallpaper_cmd="feh --bg-fill"
-    time_format="%I:%M:%S %p"
+    time_format="%H:%M:%S"
 
     # read user config
     USER_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/betterlockscreenrc"
@@ -63,7 +64,7 @@ init_config () {
     fi
 
     # Please make sure to adjust this before release!
-    VERSION="3.7.4"
+    VERSION="4.0.4"
 
     # paths
     CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/betterlockscreen"
@@ -132,7 +133,7 @@ lock() {
         --image "$image" \
         --color "$bgcolor" \
         --screen "$display_on" \
-        --ind-pos="x+310:y+h-87" \
+        --ind-pos="x+310:y+h-82" \
         --radius=25 \
         --ring-width=5 \
         --inside-color="$insidecolor" \
@@ -200,7 +201,7 @@ failsafe() {
 
     $i3lockcolor_bin \
         --color "$bgcolor" \
-        --ind-pos="x+310:y+h-87" \
+        --ind-pos="x+310:y+h-82" \
         --radius=25 \
         --ring-width=5 \
         --inside-color="$insidecolor" \
