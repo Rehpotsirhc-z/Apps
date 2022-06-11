@@ -39,7 +39,6 @@ init_config () {
     ringwrongcolor=ffffffff
     insidewrongcolor=d23c3dff
     timecolor=ffffffff
-    time_format="%H:%M:%S"
     greetercolor=ffffffff
     layoutcolor=ffffffff
     keyhlcolor=d23c3dff
@@ -49,7 +48,7 @@ init_config () {
     modifcolor=d23c3dff
     bgcolor=000000ff
     wallpaper_cmd="feh --bg-fill"
-    time_format="%H:%M:%S"
+    time_format="%I:%M:%S %p"
 
     # read user config
     USER_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/betterlockscreenrc"
