@@ -1,26 +1,26 @@
 #!/bin/sh
 case $1 in
 hide)
-	proid=$(xdo id)
-	echo $proid >>"$HOME/.config/.proidlog"
-	xdo hide $proid
-	;;
+    proid=$(xdo id)
+    echo $proid >>"$HOME/.config/.proidlog"
+    xdo hide $proid
+    ;;
 show)
-	proid=$(sed '$!d' "$HOME/.config/.proidlog")
-	xdo show $proid
-	sed -i '$d' "$HOME/.config/.proidlog"
-	;;
+    proid=$(sed '$!d' "$HOME/.config/.proidlog")
+    xdo show $proid
+    sed -i '$d' "$HOME/.config/.proidlog"
+    ;;
 deshide)
-	proid=$(xdo id)
-	echo $proid >>"$HOME/.config/.desproidlog"
-	xdo hide $proid
-	;;
+    proid=$(xdo id)
+    echo $proid >>"$HOME/.config/.desproidlog"
+    xdo hide $proid
+    ;;
 desshow)
-	proid=$(sed '$!d' "$HOME/.config/.desproidlog")
-	xdo show $proid
-	sed -i '$d' "$HOME/.config/.desproidlog"
-	;;
+    proid=$(sed '$!d' "$HOME/.config/.desproidlog")
+    xdo show $proid
+    sed -i '$d' "$HOME/.config/.desproidlog"
+    ;;
 *)
-	echo "No valid arguments"
-	;;
+    echo "No valid arguments"
+    ;;
 esac
