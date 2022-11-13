@@ -1,36 +1,50 @@
-#!/bin/sh
-case $1 in
-1)
+#!/bin/bash
+while [ $# -gt 0 ]; do
+    case "$1" in
+    --wallpaperdir=*)
+        argument="${1/--/}"
+        declare $argument
+        ;;
+    --format=*)
+        argument="${1/--/}"
+        declare $argument
+        ;;
+    1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0)
+        NUMBER="$1"
+        ;;
+    *)
+        echo "Invalid Argument"
+        exit 1
+        ;;
+    esac
+    shift
+done
+
+if [[ $NUMBER == 0 ]]; then
     nitrogen --restore
-    ;;
-2)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Christmas.jpg"
-    ;;
-3)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Angel-Beats.jpg"
-    ;;
-4)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/C3.jpg"
-    ;;
-5)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Love-of-Ren'ai-Koutei-of-LOVE!.jpg"
-    ;;
-6)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Sora-no-Mukou-de-Sakimasu-you-ni.jpg"
-    ;;
-7)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Majo-Koi-Nikki.jpg"
-    ;;
-8)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Innocent-Girl.jpg"
-    ;;
-9)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Witch's-Garden.jpg"
-    ;;
-0)
-    nitrogen --set-zoom-fill "/home/rehpotsirhc/Pictures/Anime/Miniskirt-Pirates.jpg"
-    ;;
-*)
-    echo "No valid arguments"
-    ;;
-esac
+    exit 0
+fi
+
+if [[ -n $wallpaperdir ]]; then
+    DIRECTORY=$wallpaperdir
+else
+    if [[ -n $WALN_WALLPAPERDIR ]]; then
+        DIRECTORY=$WALN_WALLPAPERDIR
+    else
+        echo -e "No wallpaper directory specified\nYou can specify one by using --wallpaperdir or by setting WALN_WALLPAPERDIR"
+        exit 1
+    fi
+fi
+
+if [[ -n $format ]]; then
+    FORMAT=$format
+else
+    if [[ -n $WALN_FORMAT ]]; then
+        FORMAT=$WALN_FORMAT
+    else
+        echo -e "No picture format specified\nYou can specify one by using --format or by setting WALN_FORMAT"
+        exit 1
+    fi
+fi
+
+nitrogen --set-zoom-fill "$DIRECTORY/$NUMBER.$FORMAT"

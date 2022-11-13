@@ -2,7 +2,7 @@
 case $1 in
 hide)
     proid=$(xdo id)
-    echo $proid >>"$HOME/.config/.proidlog"
+    echo $proid >> "$HOME/.config/.proidlog"
     xdo hide $proid
     ;;
 show)
