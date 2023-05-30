@@ -1,50 +1,49 @@
 #!/bin/bash
-while [ $# -gt 0 ]; do
+while [[ "$#" -gt 0 ]]; do
     case "$1" in
-    --wallpaperdir=*)
-        argument="${1/--/}"
-        declare $argument
-        ;;
-    --format=*)
-        argument="${1/--/}"
-        declare $argument
-        ;;
-    1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0)
-        NUMBER="$1"
-        ;;
-    *)
-        echo "Invalid Argument"
-        exit 1
-        ;;
+        --wallpaperdir=*)
+            WALLPAPERDIR="${1#*=}"
+            ;;
+        --format=*)
+            FORMAT="${1#*=}"
+            ;;
+        *[!0-9]*)
+            echo "Invalid Argument"
+            exit 1
+            ;;
+        *)
+            NUMBER="$1"
+            ;;
     esac
     shift
 done
 
-if [[ $NUMBER == 0 ]]; then
+if [[ -z "$NUMBER" ]]; then
+    echo -e "No wallpaper number specified\nYou can specify one by passing in any number, as long as it is a valid picture in your wallpaper directory"
+    exit 1
+fi
+
+if [[ "$NUMBER" == 0 ]]; then
     nitrogen --restore
     exit 0
 fi
 
-if [[ -n $wallpaperdir ]]; then
-    DIRECTORY=$wallpaperdir
-else
-    if [[ -n $WALN_WALLPAPERDIR ]]; then
-        DIRECTORY=$WALN_WALLPAPERDIR
+if [[ -z "$WALLPAPERDIR" ]]; then
+    if [[ -n "$WALN_WALLPAPERDIR" ]]; then
+        WALLPAPERDIR="$WALN_WALLPAPERDIR"
     else
         echo -e "No wallpaper directory specified\nYou can specify one by using --wallpaperdir or by setting WALN_WALLPAPERDIR"
         exit 1
     fi
 fi
 
-if [[ -n $format ]]; then
-    FORMAT=$format
-else
-    if [[ -n $WALN_FORMAT ]]; then
-        FORMAT=$WALN_FORMAT
+if [[ -z "$FORMAT" ]]; then
+    if [[ -n "$WALN_FORMAT" ]]; then
+        FORMAT="$WALN_FORMAT"
     else
         echo -e "No picture format specified\nYou can specify one by using --format or by setting WALN_FORMAT"
         exit 1
     fi
 fi
 
-nitrogen --set-zoom-fill "$DIRECTORY/$NUMBER.$FORMAT"
+nitrogen --set-zoom-fill "$WALLPAPERDIR/$NUMBER.$FORMAT"
