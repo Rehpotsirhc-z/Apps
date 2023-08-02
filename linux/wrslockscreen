@@ -1,0 +1,109 @@
+#!/bin/bash
+ringcolor=ffffffff
+insidecolor=000000cc
+ringvercolor=50aef1ff
+insidevercolor=000000cc
+ringwrongcolor=ffffffff
+time_format="%H:%M:%S"
+textcolor=ffffffff
+textwrongcolor=ffffffff
+textclearcolor=ffffffff
+ringclearcolor=ffffffff
+keyhlcolor=d23c3dff
+bshlcolor=d23c3dff
+verifcolor=ffffffff
+wrongcolor=d23c3dff
+bgcolor=000000ff
+#separatorcolor=00000000
+#insidewrongcolor=d23c3dff
+
+[[ -n "$XDG_CACHE_HOME" ]] &&
+    cachedir="$XDG_CACHE_HOME/wrslockscreen" ||
+    cachedir="$HOME/.cache/wrslockscreen"
+
+cachedimage="$cachedir/image.jpg"
+
+showhelp() {
+    echo "Usage: wrslockscreen [OPTIONS]"
+    echo "A ripoff of betterlockscreen designed to work on Wayland"
+    echo ""
+    echo "Options:"
+    echo "  -u, --update IMAGE     Set the default image for future use"
+    echo "  -l, --lock             Lock using the saved image"
+    echo "  -i, --image IMAGE      Temporarily override the saved image"
+    echo "  -h, --help             Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  wrslockscreen -u /path/to/image"
+    echo "  wrslockscreen -l"
+    echo "  wrslockscreen -i /path/to/image -l"
+}
+
+[[ "$#" -eq 0 ]] && showhelp && exit 0
+
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        -u | --update)
+            image="$2"
+            shift
+            shift
+            ;;
+        -l | --lock)
+            lock=true
+            shift
+            ;;
+        -i | --image)
+            temp_image="$2"
+            shift
+            shift
+            ;;
+        -h | --help)
+            showhelp
+            exit 0
+            ;;
+        *)
+            echo -e "Unknown option: $1\n"
+            showhelp
+            exit 1
+            ;;
+    esac
+done
+
+if [[ -n "$temp_image" ]]; then
+    image="$temp_image"
+fi
+
+if [[ -n "$image" ]]; then
+    mkdir -p "$cachedir"
+    cp "$image" "$cachedimage"
+elif [[ -n "$lock" ]]; then
+    if [[ ! -f "$cachedimage" ]]; then
+        echo -e "No image saved\n"
+        showhelp
+        exit 1
+    fi
+    image="$cachedimage"
+fi
+
+[[ "$lock" ]] &&
+    swaylock \
+        --image "$image" \
+        --line-uses-inside \
+        --clock \
+        --timestr "$time_format" \
+        --datestr "" \
+        --color "$bgcolor" \
+        --text-wrong-color="$wrongcolor" \
+        --ring-color="$ringcolor" \
+        --ring-wrong-color="$ringwrongcolor" \
+        --key-hl-color="$keyhlcolor" \
+        --bs-hl-color="$bshlcolor" \
+        --indicator \
+        --ring-ver-color="$ringvercolor" \
+        --inside-ver-color="$insidevercolor" \
+        --inside-color="$insidecolor" \
+        --text-ver-color="$verifcolor" \
+        --text-color="$textcolor" \
+        --text-wrong-color="$textwrongcolor" \
+        --text-clear-color="$textclearcolor" \
+        --ring-clear-color="$ringclearcolor"
