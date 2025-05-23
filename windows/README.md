@@ -1,4 +1,4 @@
-![Logo](https://gitlab.com/rehposuite/Apps/-/raw/main/Windows%20Apps/Logo.png)
+![Logo](Logo.png)
 # T@skk1ll
 ### Simple application that terminates the current active window when F1 is pressed.
 
@@ -11,4 +11,4 @@ If you want to remove T@skk1ll from startup, you need to follow the instructions
 
 Press Windows+r and enter "shell:startup" in the window that appears. Find T@skk1ll in the folder and delete it. You may need to exit out of T@skk1ll first before you remove it from startup. 
 
-<img width="385" alt="Startup" src="https://gitlab.com/rehposuite/Apps/-/raw/main/Windows%20Apps/Startup.png">
+![Startup](Startup.png)
